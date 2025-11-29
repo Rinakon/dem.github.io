@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New Year Crossword</title>
+  <title>New Year Crossword — Solve Online!</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -49,9 +49,24 @@
       font-weight: bold;
       position: relative;
       color: white;
+      font-size: 16px;
     }
     .cell.black {
       background: #000;
+    }
+    .cell input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .cell input:focus {
+      outline: 2px solid #ffd700;
     }
     .cell .number {
       position: absolute;
@@ -81,10 +96,32 @@
       font-weight: bold;
       color: #ffd700;
     }
+    .controls {
+      margin-top: 20px;
+    }
+    button {
+      background: #ffd700;
+      color: #0a3d15;
+      border: none;
+      padding: 8px 16px;
+      margin: 0 8px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ffcc00;
+    }
+    .cell.incorrect {
+      background: #5a0000;
+    }
+    .cell.correct {
+      background: #1a471a;
+    }
   </style>
 </head>
 <body>
-  <h1>🎄 New Year Crossword 🎄</h1>
+  <h1>🎄 New Year Crossword — Solve Online! 🎄</h1>
   <div class="container">
     <div class="crossword">
       <div class="grid" id="crosswordGrid"></div>
@@ -100,72 +137,142 @@
       <div class="clue"><span class="clue-number">13.</span> Frosty figure built from snow</div>
 
       <h2>Down:</h2>
-      <div class="clue"><span class="clue-number">1.</span> Final seconds before the New Year (e.g., "10, 9, 8...")</div>
-      <div class="clue"><span class="clue-number">2.</span> String of lights or decorative chain for the tree</div>
-      <div class="clue"><span class="clue-number">3.</span> Presents placed under the tree</div>
+      <div class="clue"><span class="clue-number">2.</span> Final seconds before the New Year (e.g., "10, 9, 8...")</div>
+      <div class="clue"><span class="clue-number">3.</span> String of lights or decorative chain for the tree</div>
+      <div class="clue"><span class="clue-number">5.</span> Presents placed under the tree</div>
     </div>
   </div>
 
-  <script>
-    // Create empty 15x15 grid
-    const size = 15;
-    let grid = Array(size).fill(null).map(() => Array(size).fill(null));
-    let numbers = Array(size).fill(null).map(() => Array(size).fill(null));
-    let clueNum = 1;
+  <div class="controls">
+    <button onclick="checkAnswers()">Check</button>
+    <button onclick="showSolution()">Show Answer</button>
+    <button onclick="resetPuzzle()">Reset</button>
+  </div>
 
-    // Helper to place word
-    function placeWord(word, x, y, dir) {
-      const cells = [];
-      for (let i = 0; i < word.length; i++) {
-        const cx = x + (dir === 'h' ? i : 0);
-        const cy = y + (dir === 'v' ? i : 0);
+  <script>
+    const size = 15;
+
+    // Define words with positions (no conflicts)
+    const words = [
+      // Across
+      { word: "SANTA",      x: 0,  y: 0,  dir: "h" },   // 1
+      { word: "POPPERS",    x: 3,  y: 3,  dir: "h" },   // 4
+      { word: "HOLIDAY",    x: 1,  y: 5,  dir: "h" },   // 6
+      { word: "TREE",       x: 6,  y: 7,  dir: "h" },   // 8
+      { word: "SNOW",       x: 2,  y: 9,  dir: "h" },   // 9
+      { word: "FIREWORKS",  x: 5,  y: 11, dir: "h" },   // 11
+      { word: "SNOWMAN",    x: 0,  y: 13, dir: "h" },   // 13
+
+      // Down — shifted to avoid (0,0) conflict
+      { word: "COUNTDOWN",  x: 10, y: 0,  dir: "v" },   // 2
+      { word: "GARLAND",    x: 12, y: 0,  dir: "v" },   // 3
+      { word: "GIFTS",      x: 14, y: 0,  dir: "v" }    // 5
+    ];
+
+    // Build solution grid and numbering
+    let solutionGrid = Array(size).fill(null).map(() => Array(size).fill(null));
+    let numberGrid = Array(size).fill(null).map(() => Array(size).fill(null));
+    let currentNumber = 1;
+
+    words.forEach(w => {
+      if (numberGrid[w.y][w.x] === null) {
+        numberGrid[w.y][w.x] = currentNumber++;
+      }
+      for (let i = 0; i < w.word.length; i++) {
+        const cx = w.x + (w.dir === 'h' ? i : 0);
+        const cy = w.y + (w.dir === 'v' ? i : 0);
         if (cx < size && cy < size) {
-          if (grid[cy][cx] === null || grid[cy][cx] === word[i]) {
-            grid[cy][cx] = word[i];
-            cells.push({ x: cx, y: cy });
-          }
+          solutionGrid[cy][cx] = w.word[i];
         }
       }
-      if (cells.length > 0 && numbers[cells[0].y][cells[0].x] === null) {
-        numbers[cells[0].y][cells[0].x] = clueNum++;
-      }
-    }
+    });
 
-    // Place words (all uppercase, no spaces)
-    // Across
-    placeWord("SANTA", 0, 0, "h");
-    placeWord("POPPERS", 3, 3, "h");
-    placeWord("HOLIDAY", 1, 5, "h");
-    placeWord("TREE", 6, 7, "h");
-    placeWord("SNOW", 2, 9, "h");
-    placeWord("FIREWORKS", 5, 11, "h");
-    placeWord("SNOWMAN", 0, 13, "h");
-
-    // Down
-    placeWord("COUNTDOWN", 0, 0, "v"); // intersects with SANTA at 'S'
-    placeWord("GARLAND", 2, 0, "v");
-    placeWord("GIFTS", 4, 0, "v");
-
-    // Render grid
+    // Render grid with inputs
     const gridEl = document.getElementById("crosswordGrid");
+    const inputCells = [];
+
     for (let y = 0; y < size; y++) {
+      inputCells[y] = [];
       for (let x = 0; x < size; x++) {
         const cell = document.createElement("div");
         cell.className = "cell";
-        if (grid[y][x] === null) {
+        if (solutionGrid[y][x] === null) {
           cell.classList.add("black");
         } else {
-          cell.textContent = grid[y][x];
-          if (numbers[y][x] !== null) {
+          const input = document.createElement("input");
+          input.maxLength = 1;
+          input.dataset.x = x;
+          input.dataset.y = y;
+          input.addEventListener("input", (e) => {
+            e.target.value = e.target.value.toUpperCase();
+          });
+          cell.appendChild(input);
+          inputCells[y][x] = input;
+
+          if (numberGrid[y][x] !== null) {
             const numSpan = document.createElement("span");
             numSpan.className = "number";
-            numSpan.textContent = numbers[y][x];
+            numSpan.textContent = numberGrid[y][x];
             cell.appendChild(numSpan);
           }
         }
         gridEl.appendChild(cell);
       }
     }
+
+    // Functions
+    function checkAnswers() {
+      // Clear highlights
+      document.querySelectorAll('.cell').forEach(c => {
+        c.classList.remove('correct', 'incorrect');
+      });
+
+      let allCorrect = true;
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          if (solutionGrid[y][x]) {
+            const user = (inputCells[y][x].value || '').trim();
+            const correct = solutionGrid[y][x];
+            const cellDiv = inputCells[y][x].parentElement;
+            if (user === correct) {
+              cellDiv.classList.add('correct');
+            } else {
+              cellDiv.classList.add('incorrect');
+              allCorrect = false;
+            }
+          }
+        }
+      }
+
+      if (allCorrect) {
+        alert("🎉 Congratulations! The crossword is solved correctly! 🎉");
+      }
+    }
+
+    function showSolution() {
+      if (!confirm("Show the correct answers?")) return;
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          if (inputCells[y][x]) {
+            inputCells[y][x].value = solutionGrid[y][x] || '';
+          }
+        }
+      }
+      checkAnswers();
+    }
+
+    function resetPuzzle() {
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          if (inputCells[y][x]) {
+            inputCells[y][x].value = '';
+          }
+        }
+      }
+      document.querySelectorAll('.cell').forEach(c => {
+        c.classList.remove('correct', 'incorrect');
+      });
+    }
   </script>
-<body>
+</body>
 </html>
