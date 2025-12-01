@@ -1,278 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New Year Crossword — Solve Online!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Year Crossword</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #0a3d15, #1d5b2a);
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       color: white;
       padding: 20px;
       text-align: center;
     }
     h1 {
-      color: #ffd700;
-      text-shadow: 0 0 10px rgba(255,215,0,0.7);
-      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      opacity: 0.9;
+      margin-bottom: 25px;
     }
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      max-width: 1000px;
+      max-width: 600px;
       margin: 0 auto;
-    }
-    .crossword {
-      background-color: #0f2a0f;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 20px;
     }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(15, 30px);
-      grid-template-rows: repeat(15, 30px);
-      gap: 1px;
-      margin: 0 auto;
+      display: inline-grid;
+      grid-template-columns: repeat(10, 32px);
+      grid-gap: 1px;
+      background: #333;
+      padding: 6px;
+      margin: 0 auto 25px;
+      border-radius: 6px;
     }
     .cell {
-      width: 30px;
-      height: 30px;
-      background: #1a471a;
-      border: 1px solid #4caf50;
+      width: 32px;
+      height: 32px;
+      background: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
       position: relative;
-      color: white;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #222;
     }
     .cell.black {
-      background: #000;
+      background: #444;
     }
-    .cell input {
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      border: none;
-      color: white;
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
-      text-transform: uppercase;
-    }
-    .cell input:focus {
-      outline: 2px solid #ffd700;
-    }
-    .cell .number {
+    .cell .num {
       position: absolute;
       top: 2px;
       left: 2px;
-      font-size: 10px;
-      color: #ffd700;
+      font-size: 9px;
+      color: #777;
+      font-weight: bold;
+    }
+    .cell input {
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      background: transparent;
+      outline: none;
+      text-transform: uppercase;
+    }
+    .cell input:focus {
+      background-color: #e0f7fa;
+      border-radius: 3px;
     }
     .clues {
-      background-color: #0f2a0f;
-      padding: 15px;
-      border-radius: 10px;
       text-align: left;
-      max-width: 350px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    }
-    .clues h2 {
-      color: #ffd700;
-      margin-top: 0;
-    }
-    .clue {
-      margin: 8px 0;
-    }
-    .clue-number {
-      display: inline-block;
-      width: 20px;
-      font-weight: bold;
-      color: #ffd700;
-    }
-    .controls {
       margin-top: 20px;
     }
-    button {
-      background: #ffd700;
-      color: #0a3d15;
-      border: none;
-      padding: 8px 16px;
-      margin: 0 8px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
+    .clues h2 {
+      font-size: 1.2em;
+      margin: 15px 0 8px;
+      color: #ffcc00;
     }
-    button:hover {
-      background: #ffcc00;
+    .clue {
+      margin: 6px 0;
     }
-    .cell.incorrect {
-      background: #5a0000;
+    .answer-hint {
+      margin-top: 25px;
+      font-size: 0.9em;
+      opacity: 0.7;
     }
-    .cell.correct {
-      background: #1a471a;
+    @media (max-width: 500px) {
+      .grid { grid-template-columns: repeat(10, 26px); }
+      .cell { width: 26px; height: 26px; }
+      .cell input { width: 20px; height: 20px; font-size: 14px; }
     }
   </style>
 </head>
 <body>
-  <h1>🎄 New Year Crossword — Solve Online! 🎄</h1>
   <div class="container">
-    <div class="crossword">
-      <div class="grid" id="crosswordGrid"></div>
+    <h1>🎄 New Year Crossword 🎄</h1>
+    <p class="subtitle">Fill in 5 English words related to the New Year holiday.</p>
+
+    <div class="grid">
+      <!-- Row 1 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 2 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"><span class="num">1</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 3 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 4 -->
+      <div class="cell black"></div>
+      <div class="cell"><span class="num">2</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 5 -->
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 6 -->
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 7 -->
+      <div class="cell black"></div>
+      <div class="cell"><span class="num">3</span><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="num">4</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 8 -->
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 9 -->
+      <div class="cell black"></div>
+      <div class="cell"><span class="num">5</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Row 10 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
     </div>
+
     <div class="clues">
       <h2>Across:</h2>
-      <div class="clue"><span class="clue-number">1.</span> Main Christmas character in red suit with a sack</div>
-      <div class="clue"><span class="clue-number">4.</span> Fun party items that go "pop!"</div>
-      <div class="clue"><span class="clue-number">6.</span> Season of joy, gifts, and celebrations</div>
-      <div class="clue"><span class="clue-number">8.</span> Evergreen decorated with lights and ornaments</div>
-      <div class="clue"><span class="clue-number">9.</span> White winter precipitation</div>
-      <div class="clue"><span class="clue-number">11.</span> Colorful explosions in the sky at midnight</div>
-      <div class="clue"><span class="clue-number">13.</span> Frosty figure built from snow</div>
+      <div class="clue"><b>1.</b> White flakes that fall in winter</div>
+      <div class="clue"><b>4.</b> Shiny decoration on top of the tree</div>
+      <div class="clue"><b>5.</b> Jingle sound: “Jingle ___!”</div>
 
       <h2>Down:</h2>
-      <div class="clue"><span class="clue-number">2.</span> Final seconds before the New Year (e.g., "10, 9, 8...")</div>
-      <div class="clue"><span class="clue-number">3.</span> String of lights or decorative chain for the tree</div>
-      <div class="clue"><span class="clue-number">5.</span> Presents placed under the tree</div>
+      <div class="clue"><b>1.</b> Evergreen plant decorated with lights and ornaments</div>
+      <div class="clue"><b>2.</b> Present wrapped in colorful paper</div>
+      <div class="clue"><b>3.</b> You shake it to make a ringing sound</div>
     </div>
+
+    <p class="answer-hint">
+      ✅ Words: <b>SNOW, TREE, GIFT, STAR, BELL</b><br>
+      (Remove this line to hide answers before solving!)
+    </p>
   </div>
-
-  <div class="controls">
-    <button onclick="checkAnswers()">Check</button>
-    <button onclick="showSolution()">Show Answer</button>
-    <button onclick="resetPuzzle()">Reset</button>
-  </div>
-
-  <script>
-    const size = 15;
-
-    // Define words with positions (no conflicts)
-    const words = [
-      // Across
-      { word: "SANTA",      x: 0,  y: 0,  dir: "h" },   // 1
-      { word: "POPPERS",    x: 3,  y: 3,  dir: "h" },   // 4
-      { word: "HOLIDAY",    x: 1,  y: 5,  dir: "h" },   // 6
-      { word: "TREE",       x: 6,  y: 7,  dir: "h" },   // 8
-      { word: "SNOW",       x: 2,  y: 9,  dir: "h" },   // 9
-      { word: "FIREWORKS",  x: 5,  y: 11, dir: "h" },   // 11
-      { word: "SNOWMAN",    x: 0,  y: 13, dir: "h" },   // 13
-
-      // Down — shifted to avoid (0,0) conflict
-      { word: "COUNTDOWN",  x: 10, y: 0,  dir: "v" },   // 2
-      { word: "GARLAND",    x: 12, y: 0,  dir: "v" },   // 3
-      { word: "GIFTS",      x: 14, y: 0,  dir: "v" }    // 5
-    ];
-
-    // Build solution grid and numbering
-    let solutionGrid = Array(size).fill(null).map(() => Array(size).fill(null));
-    let numberGrid = Array(size).fill(null).map(() => Array(size).fill(null));
-    let currentNumber = 1;
-
-    words.forEach(w => {
-      if (numberGrid[w.y][w.x] === null) {
-        numberGrid[w.y][w.x] = currentNumber++;
-      }
-      for (let i = 0; i < w.word.length; i++) {
-        const cx = w.x + (w.dir === 'h' ? i : 0);
-        const cy = w.y + (w.dir === 'v' ? i : 0);
-        if (cx < size && cy < size) {
-          solutionGrid[cy][cx] = w.word[i];
-        }
-      }
-    });
-
-    // Render grid with inputs
-    const gridEl = document.getElementById("crosswordGrid");
-    const inputCells = [];
-
-    for (let y = 0; y < size; y++) {
-      inputCells[y] = [];
-      for (let x = 0; x < size; x++) {
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        if (solutionGrid[y][x] === null) {
-          cell.classList.add("black");
-        } else {
-          const input = document.createElement("input");
-          input.maxLength = 1;
-          input.dataset.x = x;
-          input.dataset.y = y;
-          input.addEventListener("input", (e) => {
-            e.target.value = e.target.value.toUpperCase();
-          });
-          cell.appendChild(input);
-          inputCells[y][x] = input;
-
-          if (numberGrid[y][x] !== null) {
-            const numSpan = document.createElement("span");
-            numSpan.className = "number";
-            numSpan.textContent = numberGrid[y][x];
-            cell.appendChild(numSpan);
-          }
-        }
-        gridEl.appendChild(cell);
-      }
-    }
-
-    // Functions
-    function checkAnswers() {
-      // Clear highlights
-      document.querySelectorAll('.cell').forEach(c => {
-        c.classList.remove('correct', 'incorrect');
-      });
-
-      let allCorrect = true;
-      for (let y = 0; y < size; y++) {
-        for (let x = 0; x < size; x++) {
-          if (solutionGrid[y][x]) {
-            const user = (inputCells[y][x].value || '').trim();
-            const correct = solutionGrid[y][x];
-            const cellDiv = inputCells[y][x].parentElement;
-            if (user === correct) {
-              cellDiv.classList.add('correct');
-            } else {
-              cellDiv.classList.add('incorrect');
-              allCorrect = false;
-            }
-          }
-        }
-      }
-
-      if (allCorrect) {
-        alert("🎉 Congratulations! The crossword is solved correctly! 🎉");
-      }
-    }
-
-    function showSolution() {
-      if (!confirm("Show the correct answers?")) return;
-      for (let y = 0; y < size; y++) {
-        for (let x = 0; x < size; x++) {
-          if (inputCells[y][x]) {
-            inputCells[y][x].value = solutionGrid[y][x] || '';
-          }
-        }
-      }
-      checkAnswers();
-    }
-
-    function resetPuzzle() {
-      for (let y = 0; y < size; y++) {
-        for (let x = 0; x < size; x++) {
-          if (inputCells[y][x]) {
-            inputCells[y][x].value = '';
-          }
-        }
-      }
-      document.querySelectorAll('.cell').forEach(c => {
-        c.classList.remove('correct', 'incorrect');
-      });
-    }
-  </script>
 </body>
 </html>

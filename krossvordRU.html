@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новогодний кроссворд</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+      text-align: center;
+      color: #2c3e50;
+    }
+    h1 {
+      color: #d32f2f;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: inline-grid;
+      grid-template-columns: repeat(15, 30px);
+      grid-gap: 1px;
+      margin: 20px auto;
+      background-color: #333;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    .cell {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+      user-select: none;
+    }
+    .cell.black {
+      background-color: #333;
+    }
+    .cell .number {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      font-size: 8px;
+      color: #555;
+    }
+    .cell input {
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      background: transparent;
+      outline: none;
+      text-transform: uppercase;
+    }
+    .cell input:focus {
+      background-color: #e3f2fd;
+      border-radius: 2px;
+    }
+    .clues {
+      text-align: left;
+      margin-top: 30px;
+    }
+    .clues h2 {
+      margin-top: 20px;
+      color: #1976d2;
+    }
+    .clue-list {
+      columns: 2;
+      column-gap: 30px;
+    }
+    .clue {
+      margin-bottom: 6px;
+    }
+    @media (max-width: 600px) {
+      .clue-list {
+        columns: 1;
+      }
+      .grid {
+        grid-template-columns: repeat(15, 24px);
+      }
+      .cell { width: 24px; height: 24px; }
+      .cell input { width: 20px; height: 20px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Новогодний кроссворд ✨</h1>
+    <p>Впишите ответы в белые клетки. Все слова — на новогоднюю тему.</p>
+
+    <div class="grid" id="crossword">
+      <!-- Сетка 15×15. Каждая ячейка: либо .black, либо с номером/вводом -->
+      <!-- Ручная раскладка для 10 слов (см. ключ ниже) -->
+      <!-- Формат: [номер, буква (опц.), ввод] или black -->
+
+      <!-- Строка 1 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"><span class="number">1</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 2 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 3 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"><span class="number">2</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="number">3</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="number">4</span><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+      <div class="cell"><input maxlength="1"></div>
+
+      <!-- Строка 4 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 5 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 6 -->
+      <div class="cell black"></div>
+      <div class="cell"><span class="number">5</span><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 7 -->
+      <div class="cell"><span class="number">6</span><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 8 -->
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 9 -->
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 10 -->
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 11 -->
+      <div class="cell"><span class="number">7</span><input maxlength="1"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 12 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 13 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 14 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+
+      <!-- Строка 15 -->
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+      <div class="cell black"></div>
+    </div>
+
+    <div class="clues">
+      <h2>По горизонтали:</h2>
+      <div class="clue-list">
+        <div class="clue">1. Главное новогоднее дерево</div>
+        <div class="clue">3. Праздничный фейерверк в полночь</div>
+        <div class="clue">4. Символ года, висит на макушке ёлки</div>
+        <div class="clue">6. Праздничный салат с колбасой и овощами</div>
+        <div class="clue">7. Овощи-фруктовые «новогодние шарики»</div>
+      </div>
+
+      <h2>По вертикали:</h2>
+      <div class="clue-list">
+        <div class="clue">1. Белое покрывало на полях и крышах</div>
+        <div class="clue">2. Дедушка со шляпой и мешком подарков</div>
+        <div class="clue">3. Внучка Деда Мороза в серебристом наряде</div>
+        <div class="clue">5. То, что мы ждём под ёлкой</div>
+        <div class="clue">8. Звон, раздающийся в полночь 31 декабря</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px; font-style: italic; color: #555;">
+      Подсказка: все слова — существительные в именительном падеже, единственном числе.<br>
+      Ответы: 1. ЁЛКА, 2. ДЕД МОРОЗ, 3. САЛЮТ, 4. ЗВЕЗДА, 5. ПОДАРКИ, 6. ОЛИВЬЕ, 7. МАНДАРИНЫ, 8. КУРАНТЫ, 9. СНЕГ, 10. СНЕГУРОЧКА.
+    </p>
+  </div>
+</body>
+</html>
