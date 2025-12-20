@@ -17,6 +17,7 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            padding: 20px;
         }
 
         h1 {
@@ -25,19 +26,22 @@
             text-shadow: 0 0 10px #ffd166;
         }
 
-        .gif-container {
+        .video-container {
             width: 90%;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
         }
 
-        .gif-container img {
+        .video-container iframe {
             width: 100%;
             height: auto;
+            min-height: 315px;
             display: block;
+            border: none;
+            border-radius: 15px;
         }
 
         .back-link {
@@ -59,16 +63,13 @@
 </head>
 <body>
     <h1>🎄 Новогоднее видео 🎄</h1>
-<div class="links">
-<!-- Встроенное видео -->
-<div style="margin-top: 30px;">
-    <iframe
-        width="560"
-        height="315"
-        src="https:"https://rutube.ru/video/8745ab416429b53b17801fa0e90c95c4/frameborder="0"allowfullscreen
-        style="border-radius: 12px; max-width: 100%; height: auto;">
-    </iframe>
-</div>
+
+    <div class="video-container">
+        <iframe
+            src="https://rutube.ru/play/embed/8745ab416429b53b17801fa0e90c95c4/"
+            allowfullscreen>
+        </iframe>
+    </div>
 
     <a href="index.html" class="back-link">← Вернуться на главную</a>
 </body>
