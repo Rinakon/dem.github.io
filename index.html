@@ -52,9 +52,16 @@
 
         h1 {
             font-size: 3em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 0 0 15px #ffd166, 0 0 30px #ffd166;
             animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .date {
+            font-size: 1.2em;
+            color: #a7c5eb;
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
         .kolyadka {
@@ -123,6 +130,7 @@
 
     <div class="content">
         <h1>КОЛЯДКА 🎄</h1>
+        <div class="date">Сегодня: 20 декабря 2025 года</div>
 
         <div class="kolyadka">
             Пудель-пудель, лапы вверх —<br>
@@ -138,6 +146,17 @@
             <a href="krossvordEN.html">Английский кроссворд</a>
         </div>
     </div>
+
+    <script>
+        // Устанавливаем дату (на случай, если вы захотите автоматизировать)
+        const now = new Date(2025, 11, 20); // декабрь = 11
+        const options = { 
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        document.querySelector('.date').textContent = `Сегодня: ${now.toLocaleDateString('ru-RU', options)}`;
+    </script>
 
 </body>
 </html>
