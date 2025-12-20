@@ -25,16 +25,19 @@
             text-shadow: 0 0 10px #ffd166;
         }
 
-        .video-container {
+        .gif-container {
             width: 90%;
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        video {
-            width: 100%;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
+            overflow: hidden;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .back-link {
@@ -55,13 +58,11 @@
     </style>
 </head>
 <body>
-    <h1>🎄 Новогоднее видео 🎄</h1>
+    <h1>🎄 Новогоднее видео (в стиле GIF) 🎄</h1>
 
-    <div class="video-container">
-        <video controls autoplay muted playsinline>
-            <source src="ezgif-67af0a6cb503a5b2.gif" type="video/mp4">
-            Ваш браузер не поддерживает воспроизведение видео.
-        </video>
+    <div class="gif-container">
+        <!-- ЗАМЕНИ 'new_year.gif' НА ИМЯ ТВОЕГО ФАЙЛА -->
+        <img src="new_year.gif" alt="Новогодняя анимация" />
     </div>
 
     <a href="index.html" class="back-link">← Вернуться на главную</a>
