@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой блог</title>
-    <!-- Подключаем CSS-файл -->
-    <link rel="stylesheet" href="style.css"><!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рождественская колядка</title>
+    <title>КОЛЯДКА</title>
+
+    <!-- Подключаем шрифт Pudelinka -->
     <style>
         @font-face {
             font-family: 'Pudelinka';
@@ -24,38 +19,125 @@
             background: #0d3b66;
             color: #f4f1de;
             text-align: center;
-            padding: 60px 20px;
-            font-size: 2.4em;
-            line-height: 1.6;
+            padding: 20px;
             margin: 0;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Фоновое видео */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(13, 59, 102, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 209, 102, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #ffd166, 0 0 30px #ffd166;
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
         .kolyadka {
-            max-width: 800px;
-            margin: 0 auto;
-            text-shadow: 0 0 10px #ffd166;
+            font-size: 1.8em;
+            line-height: 1.5;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(244, 241, 222, 0.1);
+            border-radius: 15px;
+            border: 2px solid #ffd166;
+            text-shadow: 0 0 8px #ffd166;
         }
 
         .snow {
             font-size: 1.2em;
             color: #a7c5eb;
             margin-top: 20px;
+            animation: snowfall 3s linear infinite;
+        }
+
+        .links {
+            margin-top: 40px;
+            font-size: 1.2em;
+        }
+
+        .links a {
+            color: #ffd166;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            display: inline-block;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #ffd166;
+            color: #0d3b66;
+            transform: scale(1.05);
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 15px #ffd166; }
+            to { text-shadow: 0 0 30px #ffd166, 0 0 50px #ffd166; }
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            .kolyadka { font-size: 1.4em; }
+            .content { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="kolyadka">
-        Рождество приходит в дом,<br>
-        Светом наполняя звёздным!<br>
-        Счастье — под святым крестом,<br>
-        Мир — в любви небесной бездне. ❄️
+
+    <!-- Фоновое видео -->
+    <video class="video-bg" autoplay muted loop playsinline>
+        <source src="your-christmas-video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+
+    <div class="content">
+        <h1>КОЛЯДКА 🎄</h1>
+
+        <div class="kolyadka">
+            Пудель-пудель, лапы вверх —<br>
+            Звёзды светят, как умех!<br>
+            Дед Мороз в дверь постучал,<br>
+            И подарки нам прислал! 🐶🎁
+        </div>
+
+        <div class="snow">✨ С Рождеством! ✨ ❄️</div>
+
+        <div class="links">
+            <a href="krossvordRU.html">Русский кроссворд</a><br>
+            <a href="krossvordEN.html">Английский кроссворд</a>
+        </div>
     </div>
-    <div class="snow">✨ С Рождеством! ✨</div>
-</body>
-</html>
-</head>
-<body>
-    <a href="krossvordRU.html">Русский кроссворд</a><br>
-    <a href="krossvordEN.html">Английский кроссворд</a><br>
+
 </body>
 </html>
