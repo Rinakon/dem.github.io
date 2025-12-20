@@ -3,114 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рождественское видео 🎄</title>
-
-    <!-- Подключаем шрифт Pudelinka -->
+    <title>Новогоднее видео</title>
     <style>
-        @font-face {
-            font-family: 'Pudelinka';
-            src: url('fonts/Pudelinka.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
         body {
-            font-family: 'Pudelinka', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
             background: #0d3b66;
             color: #f4f1de;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px #ffd166, 0 0 30px #ffd166;
-            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+            color: #ffd166;
+            text-shadow: 0 0 10px #ffd166;
         }
 
         .video-container {
             width: 90%;
             max-width: 800px;
-            margin: 20px auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 209, 102, 0.3);
+            margin: 0 auto;
         }
 
-        .video-frame {
+        video {
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 */
-            position: relative;
-        }
-
-        .video-frame iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
         }
 
         .back-link {
-            margin-top: 30px;
-            font-size: 1.2em;
-        }
-
-        .back-link a {
+            margin-top: 20px;
+            display: inline-block;
             color: #ffd166;
             text-decoration: none;
             padding: 10px 20px;
+            border: 2px solid #ffd166;
             border-radius: 10px;
-            transition: all 0.3s ease;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .back-link a:hover {
+        .back-link:hover {
             background: #ffd166;
             color: #0d3b66;
-            transform: scale(1.05);
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 15px #ffd166; }
-            to { text-shadow: 0 0 30px #ffd166, 0 0 50px #ffd166; }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .video-container { width: 95%; }
         }
     </style>
 </head>
 <body>
-
-    <h1>🎥 Рождественское видео 🎄</h1>
+    <h1>🎄 Новогоднее видео 🎄</h1>
 
     <div class="video-container">
-        <div class="video-frame">
-        
-            <iframe 
-                src="0d876f78-e38c-4d3f-a986-0bb30a9badb6.mp4" 
-                frameborder="0" 
-                allowfullscreen 
-                allow="autoplay; encrypted-media">
-            </iframe>
-        </div>
+        <video controls autoplay muted playsinline>
+            <source src="019b16da-f770-717f-b9d8-465ed5d88719.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+        </video>
     </div>
 
-    <div class="back-link">
-        <a href="index.html">← Вернуться на главную</a>
-    </div>
-
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
 </body>
 </html>
