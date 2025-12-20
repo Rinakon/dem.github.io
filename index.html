@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Pudelinka', cursive, sans-serif;
-            background: #0d3b66; /* Простой однотонный фон */
+            background: #0d3b66;
             color: #f4f1de;
             text-align: center;
             padding: 20px;
@@ -121,29 +121,29 @@
             И подарки нам прислал! 🐶🎁
         </div>
 
-        <div class="snow">✨ С Рождеством! ✨ ❄️
-        </div>
+        <div class="snow">✨ С Рождеством! ✨ ❄️</div>
 
         <div class="links">
-    <a href="krossvordRU.html">Русский кроссворд</a><br>
-    <a href="krossvordEN.html">Английский кроссворд</a><br>
-</div>
+            <a href="krossvordRU.html">Русский кроссворд</a><br>
+            <a href="krossvordEN.html">Английский кроссворд</a>
+        </div>
 
-<!-- Встроенное видео -->
-<div style="margin-top: 30px;">
-    <iframe
-        width="560"
-        height="315"
-        src="https:https://rutube.ru/video/8745ab416429b53b17801fa0e90c95c4/"
-        frameborder="0"
-        allowfullscreen
-        style="border-radius: 12px; max-width: 100%; height: auto;">
-    </iframe>
-</div>
+        <!-- Встроенное новогоднее видео -->
+        <div style="margin-top: 30px; max-width: 560px; width: 100%;">
+            <iframe
+                src="https://rutube.ru/play/embed/8745ab416429b53b17801fa0e90c95c4/"
+                width="100%"
+                height="315"
+                frameborder="0"
+                allowfullscreen
+                style="border-radius: 12px; border: none; display: block;">
+            </iframe>
+        </div>
+    </div>
 
     <script>
-        // Устанавливаем дату (на случай, если вы захотите автоматизировать)
-        const now = new Date(2025, 11, 20); // декабрь = 11
+        // Устанавливаем дату (автоматически)
+        const now = new Date(); // или оставить вашу дату: new Date(2025, 11, 20)
         const options = { 
             year: 'numeric',
             month: 'long',
