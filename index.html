@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>КОЛЯДКА</title>
 
-    <!-- Подключаем шрифт Pudelinka -->
     <style>
         @font-face {
             font-family: 'Pudelinka';
@@ -16,14 +15,14 @@
 
         body {
             font-family: 'Pudelinka', cursive, sans-serif;
-            background: #0d3b66;
+            background: #0d3b66; /* Сплошной фон без GIF */
             color: #f4f1de;
             text-align: center;
             padding: 20px;
             margin: 0;
             position: relative;
-            overflow-x: hidden;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .content {
@@ -125,25 +124,13 @@
 
         <div class="links">
             <a href="krossvordRU.html">Русский кроссворд</a><br>
-            <a href="krossvordEN.html">Английский кроссворд</a>
-        </div>
-
-        <!-- Встроенное новогоднее видео -->
-        <div style="margin-top: 30px; max-width: 560px; width: 100%;">
-            <iframe
-                src="https://rutube.ru/video/7349796536f20502444adf8be7c13c42/"
-                width="100%"
-                height="315"
-                frameborder="0"
-                allowfullscreen
-                style="border-radius: 12px; border: none; display: block;">
-            </iframe>
+            <a href="krossvordEN.html">Английский кроссворд</a><br>
+            <a href="video.html">🎄 Новогоднее видео</a>
         </div>
     </div>
 
     <script>
-        // Устанавливаем дату (автоматически)
-        const now = new Date(); // или оставить вашу дату: new Date(2025, 11, 20)
+        const now = new Date(2025, 11, 20); // декабрь = 11
         const options = { 
             year: 'numeric',
             month: 'long',
