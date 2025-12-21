@@ -18,6 +18,7 @@
             min-height: 100vh;
             text-align: center;
             padding: 20px;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -27,7 +28,7 @@
         }
 
         .video-container {
-            width: 90%;
+            width: 100%;
             max-width: 800px;
             margin: 20px auto;
             border-radius: 15px;
@@ -37,8 +38,7 @@
 
         .video-container iframe {
             width: 100%;
-            height: auto;
-            min-height: 315px;
+            height: 450px; /* фиксированная высота для лучшего отображения */
             display: block;
             border: none;
             border-radius: 15px;
@@ -59,6 +59,12 @@
             background: #ffd166;
             color: #0d3b66;
         }
+
+        @media (max-width: 600px) {
+            .video-container iframe {
+                height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -66,8 +72,9 @@
 
     <div class="video-container">
         <iframe
-            src="https://rutube.ru/video/7349796536f20502444adf8be7c13c42/"
-            allowfullscreen>
+            src="https://rutube.ru/play/embed/7349796536f20502444adf8be7c13c42"
+            allowfullscreen
+            loading="lazy">
         </iframe>
     </div>
 
