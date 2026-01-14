@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Pudelinka', cursive, sans-serif;
-            background: #0d3b66; /* Сплошной фон без GIF */
+            background: #0d3b66;
             color: #f4f1de;
             text-align: center;
             padding: 20px;
@@ -35,6 +35,14 @@
             backdrop-filter: blur(10px);
             z-index: 1;
             position: relative;
+        }
+
+        .blog-meta {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #ffd166;
+            text-shadow: 0 0 8px rgba(255, 209, 102, 0.6);
         }
 
         h1 {
@@ -104,14 +112,22 @@
             h1 { font-size: 2.2em; }
             .kolyadka { font-size: 1.4em; }
             .content { padding: 20px; }
+            .blog-meta { font-size: 1em; }
         }
     </style>
 </head>
 <body>
 
     <div class="content">
+        <!-- Новый блок: дата, домен, почта -->
+        <div class="blog-meta">
+            <p>Создано: 14 января 2026</p>
+            <p>Доменное имя моего сайта — <strong>dem.github.io</strong>: состоит из имён <em>dem</em>, <em>github</em> и <em>io</em>.</p>
+            <p><a href="mailto:vfguknnggt@rambler.ru">Напишите мне</a></p>
+        </div>
+
         <h1>КОЛЯДКА 🎄</h1>
-        <div class="date">Сегодня: 20 декабря 2025 года</div>
+        <div class="date">Сегодня: 14 января 2026 года</div>
 
         <div class="kolyadka">
             Пудель-пудель, лапы вверх —<br>
@@ -130,7 +146,7 @@
     </div>
 
     <script>
-        const now = new Date(2025, 11, 20); // декабрь = 11
+        const now = new Date(2026, 0, 14); // январь = 0
         const options = { 
             year: 'numeric',
             month: 'long',
