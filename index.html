@@ -70,6 +70,24 @@
             text-shadow: 0 0 8px #ffd166;
         }
 
+        .cipher-section {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(244, 241, 222, 0.1);
+            border-radius: 15px;
+            border: 2px solid #a7c5eb;
+            text-align: left;
+        }
+
+        .cipher-section h2 {
+            text-align: center;
+            color: #ffd166;
+            margin-top: 0;
+            text-shadow: 0 0 8px #a7c5eb;
+        }
+
         .snow {
             font-size: 1.2em;
             color: #a7c5eb;
@@ -110,7 +128,7 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.2em; }
-            .kolyadka { font-size: 1.4em; }
+            .kolyadka, .cipher-section { font-size: 1.3em; }
             .content { padding: 20px; }
             .blog-meta { font-size: 1em; }
         }
@@ -127,13 +145,28 @@
         </div>
 
         <h1>КОЛЯДКА 🎄</h1>
-        <div class="date">Сегодня: 20 декабря 2025</div>
+        <div class="date">Сегодня: 20 дкабря 2025</div>
 
         <div class="kolyadka">
             Пудель-пудель, лапы вверх —<br>
             Звёзды светят, как умех!<br>
             Дед Мороз в дверь постучал,<br>
             И подарки нам прислал! 🐶🎁
+        </div>
+
+        <div class="cipher-section">
+            <h2>Решение шифров (19 января 2026)</h2>
+            <p><strong>1. Определение ключей шифра Цезаря:</strong></p>
+            <p>а. АПЕЛЬСИН → САЦЬНВЩЮ ⇒ ключ <strong>k = 17</strong></p>
+            <p>б. АБРИКОС → ЫЬЛГЕЙМ ⇒ ключ <strong>k = 27</strong></p>
+
+            <p><strong>2. Расшифровка сообщений:</strong></p>
+            <p>а. ФХНЗКЧ → <strong>ПРИВЕТ</strong> (k = 5)</p>
+            <p>б. ЦЩЕБФ → <strong>ВЕСНА</strong> (k = 20)</p>
+
+            <p><strong>3. Шифрование фамилии:</strong></p>
+            <p>Фамилия: <em>Константинова</em>, ключ = 10</p>
+            <p>Результат: <strong>ФШЧЫЬКЧЬТЧШМК</strong></p>
         </div>
 
         <div class="snow">✨ С Рождеством! ✨ ❄️</div>
@@ -146,7 +179,7 @@
     </div>
 
     <script>
-        const now = new Date(2025, 11, 20); // декабря= 11
+        const now = new Date(2026, 11, 20); // декабря = 11
         const options = { 
             year: 'numeric',
             month: 'long',
