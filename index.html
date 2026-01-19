@@ -25,9 +25,22 @@
             overflow-x: hidden;
         }
 
+        .blog-title {
+            font-size: 2.8em;
+            color: #ffd166;
+            text-shadow: 0 0 12px rgba(255, 209, 102, 0.8);
+            margin: 20px 0 30px;
+            animation: glow-title 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-title {
+            from { text-shadow: 0 0 12px #ffd166; }
+            to { text-shadow: 0 0 20px #ffd166, 0 0 30px #ffd166; }
+        }
+
         .content {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 0 auto 40px;
             padding: 30px;
             background: rgba(13, 59, 102, 0.7);
             border-radius: 20px;
@@ -127,6 +140,7 @@
         }
 
         @media (max-width: 768px) {
+            .blog-title { font-size: 2.2em; }
             h1 { font-size: 2.2em; }
             .kolyadka, .cipher-section { font-size: 1.3em; }
             .content { padding: 20px; }
@@ -135,6 +149,8 @@
     </style>
 </head>
 <body>
+
+    <div class="blog-title">МОЙ БЛОГ</div>
 
     <div class="content">
         <!-- Новый блок: дата, домен, почта -->
