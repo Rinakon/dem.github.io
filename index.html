@@ -247,6 +247,75 @@
             animation: float 3s ease-in-out infinite;
         }
 
+        /* --- Predictions Section --- */
+        .predictions-box {
+            background: linear-gradient(135deg, rgba(26, 58, 95, 0.05), rgba(212, 160, 23, 0.1));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .predictions-box h3 {
+            color: var(--accent-blue);
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .prediction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .prediction-item:hover {
+            transform: translateX(5px);
+        }
+
+        .prediction-item:first-child {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.2), rgba(212, 160, 23, 0.1));
+            border: 2px solid var(--accent-gold);
+        }
+
+        .prediction-rank {
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .prediction-name {
+            flex-grow: 1;
+            text-align: left;
+            color: var(--text-dark);
+        }
+
+        .prediction-percent {
+            font-weight: bold;
+            color: #059669;
+            background: rgba(5, 150, 105, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+
+        .date-display {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -315,7 +384,37 @@
             </div>
         </article>
 
-        <!-- SECTION 2: KOLYADKA & CIPHERS -->
+        <!-- SECTION 2: PREDICTIONS -->
+        <article class="card">
+            <h1>🔮 Топ-3 Предсказания</h1>
+            <div style="text-align: center;">
+                <div class="date-display" id="current-date"></div>
+            </div>
+            
+            <div class="predictions-box">
+                <h3><i class="fas fa-crystal-ball"></i> Предсказания на сегодня</h3>
+                
+                <div class="prediction-item">
+                    <span class="prediction-rank">#1</span>
+                    <span class="prediction-name"><i class="fas fa-running"></i> Running Shoe</span>
+                    <span class="prediction-percent">99.45%</span>
+                </div>
+                
+                <div class="prediction-item">
+                    <span class="prediction-rank">#2</span>
+                    <span class="prediction-name"><i class="fas fa-store"></i> Shoe Store</span>
+                    <span class="prediction-percent">0.27%</span>
+                </div>
+                
+                <div class="prediction-item">
+                    <span class="prediction-rank">#3</span>
+                    <span class="prediction-name"><i class="fas fa-shoe-prints"></i> Clogs</span>
+                    <span class="prediction-percent">0.15%</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- SECTION 3: KOLYADKA & CIPHERS -->
         <article class="card">
             <h1>КОЛЯДКА 🎄</h1>
             <div style="text-align: center;">
@@ -366,14 +465,14 @@
 
 <script>
     // Функция для форматирования даты с заглавной буквы
-    function formatDate(dateObj) {
+    function formatDate(dateObj, locale = 'ru-RU') {
         const options = { 
             weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         };
-        let str = dateObj.toLocaleDateString('ru-RU', options);
+        let str = dateObj.toLocaleDateString(locale, options);
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
@@ -385,6 +484,10 @@
     // Дата Колядки: 20 декабря 2025
     const dateKolyadka = new Date(2025, 11, 20);
     document.getElementById('date-kolyadka').textContent = `Сегодня: ${formatDate(dateKolyadka)}`;
+
+    // Дата предсказаний: 20 декабря 2025
+    const datePredictions = new Date(2025, 11, 20);
+    document.getElementById('current-date').textContent = formatDate(datePredictions);
 </script>
 
 </body>
