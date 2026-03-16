@@ -490,9 +490,13 @@
     document.getElementById('current-date').textContent = formatDate(datePredictions);
 </script>
 <!-- Прогноз модели линейной регрессии -->
-    //дата прогноза модели:16 марта
-    const date = new Date(2026, 2, 16); 
 <div style="background: #ffffff; border: 2px dashed #1a3a5f; border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center; box-shadow: 0 4px 15px rgba(26, 58, 95, 0.05);">
+    
+    <!-- Дата прогноза -->
+    <div style="background: #1a3a5f; color: #fff; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600;">
+        📅 16 марта
+    </div>
+    
     <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
         <i class="fas fa-chart-line"></i> Прогноз успеваемости (ML Модель)
     </div>
