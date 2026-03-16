@@ -489,7 +489,21 @@
     const datePredictions = new Date(2025, 11, 20);
     document.getElementById('current-date').textContent = formatDate(datePredictions);
 </script>
-
+<!-- Прогноз модели линейной регрессии -->
+<div style="background: #ffffff; border: 2px dashed #1a3a5f; border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center; box-shadow: 0 4px 15px rgba(26, 58, 95, 0.05);">
+    <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+        <i class="fas fa-chart-line"></i> Прогноз успеваемости (ML Модель)
+    </div>
+    <div style="font-family: 'Ruslan Display', cursive; font-size: 2.5rem; color: #1a3a5f; margin: 5px 0;">
+        50.23 балла
+    </div>
+    <div style="font-size: 1rem; color: #1e293b; background: #f0f9ff; display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 5px;">
+        При практике: <strong style="color: #d4a017;">5.0 часов</strong>
+    </div>
+    <p style="font-size: 0.85rem; color: #64748b; margin-top: 10px;">
+        *Расчет выполнен моделью линейной регрессии на основе данных task_regression2.csv
+    </p>
+</div>
 </body>
 </html>
 
