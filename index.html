@@ -114,7 +114,7 @@
             border-color: var(--accent-blue);
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Ruslan Display', cursive;
             color: var(--accent-blue);
             text-align: center;
@@ -123,6 +123,7 @@
 
         h1 { font-size: 2.2rem; margin-bottom: 10px; }
         h2 { font-size: 1.8rem; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4rem; margin-bottom: 15px; }
 
         .date-badge {
             display: block;
@@ -379,6 +380,118 @@
             font-style: italic;
         }
 
+        /* --- Neural Network Explanation Section --- */
+        .nn-explanation {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .nn-explanation p {
+            margin-bottom: 20px;
+        }
+
+        .nn-explanation strong {
+            color: var(--accent-blue);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 15px;
+            font-family: 'Ruslan Display', cursive;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f0f9ff;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(212, 160, 23, 0.1);
+        }
+
+        .nn-diagram {
+            background: linear-gradient(135deg, rgba(26, 58, 95, 0.05), rgba(212, 160, 23, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .nn-step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px var(--card-shadow);
+        }
+
+        .nn-step-number {
+            background: var(--accent-blue);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .nn-step-content {
+            flex-grow: 1;
+        }
+
+        .nn-step-title {
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .nn-step-desc {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: #fef9e7;
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--accent-blue);
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -408,6 +521,21 @@
             }
             .mse-grid {
                 grid-template-columns: 1fr;
+            }
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 5px;
+            }
+            .nn-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nn-step-number {
+                margin-right: 0;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -521,6 +649,111 @@
             </div>
 
             <div class="snow-animation">✨ С Рождеством! ❄️</div>
+        </article>
+
+        <!-- SECTION 4: NEURAL NETWORK EXPLANATION -->
+        <article class="card">
+            <h1>🧠 Как работает нейронная сеть?</h1>
+            <div style="text-align: center;">
+                <span class="date-badge">Понедельник, 30 марта 2026</span>
+            </div>
+
+            <div class="nn-explanation">
+                <p>Нейронная сеть — это математическая модель, работающая по принципу человеческого мозга [[5]]. Она не «думает» в привычном понимании, а обрабатывает данные через множество простых вычислительных единиц, называемых <strong>нейронами</strong> или <strong>узлами</strong> [[4]].</p>
+
+                <div class="highlight-box">
+                    <h4><i class="fas fa-lightbulb"></i> Ключевое отличие от предыдущих моделей</h4>
+                    <p>В отличие от <strong>линейной регрессии</strong> (которая строит одну прямую линию) и <strong>дерева решений</strong> (которое задаёт последовательность правил «если-то»), нейронная сеть может находить <strong>сложные нелинейные закономерности</strong> в данных благодаря множеству слоёв и связей между нейронами [[28]].</p>
+                </div>
+
+                <h3>📊 Сравнение трёх подходов</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Модель</th>
+                            <th>Как работает</th>
+                            <th>Плюсы</th>
+                            <th>Минусы</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Линейная регрессия</strong></td>
+                            <td>Находит прямую линию, которая лучше всего описывает зависимость между переменными</td>
+                            <td>Простота, скорость, интерпретируемость</td>
+                            <td>Не работает со сложными нелинейными данными</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Дерево решений</strong></td>
+                            <td>Задаёт серию вопросов «если-то», разделяя данные на ветви</td>
+                            <td>Наглядность, работает с категориальными данными</td>
+                            <td>Склонность к переобучению, нестабильность</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Нейронная сеть</strong></td>
+                            <td>Многослойная структура нейронов, обучаемая через прямой и обратный проход</td>
+                            <td>Мощность, универсальность, работа со сложными паттернами</td>
+                            <td>Требует много данных, сложна в интерпретации</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>⚙️ Логика работы нейросети: пошагово</h3>
+                
+                <div class="nn-diagram">
+                    <div class="nn-step">
+                        <div class="nn-step-number">1</div>
+                        <div class="nn-step-content">
+                            <div class="nn-step-title">Прямой проход (Forward Pass)</div>
+                            <div class="nn-step-desc">Данные поступают на входной слой, проходят через скрытые слои, где каждый нейрон умножает вход на свой <strong>вес</strong>, добавляет <strong>смещение</strong> и применяет <strong>функцию активации</strong>, затем передаёт результат дальше [[2]]. Информация движется только в одном направлении — от входа к выходу [[1]].</div>
+                        </div>
+                    </div>
+
+                    <div class="nn-step">
+                        <div class="nn-step-number">2</div>
+                        <div class="nn-step-content">
+                            <div class="nn-step-title">Вычисление ошибки</div>
+                            <div class="nn-step-desc">На выходе сеть выдаёт прогноз, который сравнивается с правильным ответом. Разница между ними называется <strong>ошибкой</strong> (loss). Чем больше ошибка, тем хуже сеть справилась с задачей.</div>
+                        </div>
+                    </div>
+
+                    <div class="nn-step">
+                        <div class="nn-step-number">3</div>
+                        <div class="nn-step-content">
+                            <div class="nn-step-title">Обратное распространение ошибки (Backpropagation)</div>
+                            <div class="nn-step-desc">Это ключевой этап обучения! Ошибка «распространяется» обратно от выхода к входу, и сеть вычисляет, как каждый вес повлиял на ошибку [[11]]. Алгоритм обратного распространения эффективно вычисляет градиент функции потерь по всем параметрам сети [[16]].</div>
+                        </div>
+                    </div>
+
+                    <div class="nn-step">
+                        <div class="nn-step-number">4</div>
+                        <div class="nn-step-content">
+                            <div class="nn-step-title">Обновление весов (Градиентный спуск)</div>
+                            <div class="nn-step-desc">Сеть корректирует все веса в направлении, которое уменьшает ошибку. Этот процесс повторяется тысячи раз, пока ошибка не станет минимальной [[19]]. Нейросети обучаются с помощью модификаций градиентного спуска [[18]].</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>🎯 Простая аналогия</h3>
+                <p>Представьте, что вы учитесь играть в дартс:</p>
+                <ul style="margin: 15px 0 25px 30px;">
+                    <li><strong>Прямой проход</strong> — вы бросаете дротик, глядя на мишень.</li>
+                    <li><strong>Вычисление ошибки</strong> — вы видите, насколько далеко дротик от центра.</li>
+                    <li><strong>Обратное распространение</strong> — ваш мозг анализирует: «Я слишком сильно махнул рукой и неправильно прицелился».</li>
+                    <li><strong>Обновление весов</strong> — в следующий раз вы корректируете силу броска и угол прицеливания.</li>
+                </ul>
+                <p>После сотен таких попыток вы становитесь мастером! Точно так же обучается нейронная сеть, только вместо «рук» и «глаз» у неё миллионы математических параметров [[6]].</p>
+
+                <div class="highlight-box">
+                    <h4><i class="fas fa-chart-line"></i> Почему MSE на тесте выше, чем на обучении?</h4>
+                    <p>В наших результатах (MSE на обучении: 0.0179, MSE на тесте: 0.0262) видно, что ошибка на тестовых данных немного выше. Это нормально! Модель хорошо выучила тренировочные данные, но новые данные всегда немного сложнее предсказать. Главное — чтобы разница не была слишком большой, иначе это признак <strong>переобучения</strong>.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="#" class="btn-link"><i class="fas fa-download"></i> Скачать полную версию (.pdf)</a>
+                    <a href="#" class="btn-link btn-secondary"><i class="fas fa-book"></i> Читать про градиентный спуск</a>
+                </div>
+            </div>
         </article>
     </main>
 
