@@ -316,6 +316,69 @@
             font-weight: 600;
         }
 
+        /* --- MSE Results Box --- */
+        .mse-results-box {
+            background: #ffffff;
+            border: 2px dashed var(--accent-blue);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(26, 58, 95, 0.05);
+        }
+        
+        .mse-date {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .mse-title {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .mse-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .mse-item {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mse-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+        
+        .mse-value {
+            font-family: 'Ruslan Display', cursive;
+            font-size: 1.4rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        
+        .mse-note {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -342,6 +405,9 @@
                 flex-direction: column; 
                 gap: 10px;
                 border-radius: 20px;
+            }
+            .mse-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -463,6 +529,47 @@
     </footer>
 </div>
 
+<!-- Прогноз модели линейной регрессии -->
+<div style="background: #ffffff; border: 2px dashed #1a3a5f; border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center; box-shadow: 0 4px 15px rgba(26, 58, 95, 0.05);">
+    
+    <!-- Дата прогноза -->
+    <div style="background: #1a3a5f; color: #fff; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600;">
+        📅 16 марта
+    </div>
+    
+    <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+        <i class="fas fa-chart-line"></i> Прогноз успеваемости (ML Модель)
+    </div>
+    <div style="font-family: 'Ruslan Display', cursive; font-size: 2.5rem; color: #1a3a5f; margin: 5px 0;">
+        50.23 балла
+    </div>
+    <div style="font-size: 1rem; color: #1e293b; background: #f0f9ff; display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 5px;">
+        При практике: <strong style="color: #d4a017;">5.0 часов</strong>
+    </div>
+    <p style="font-size: 0.85rem; color: #64748b; margin-top: 10px;">
+        *Расчет выполнен моделью линейной регрессии на основе данных task_regression2.csv
+    </p>
+</div>
+
+<!-- Итоговые результаты обучения модели -->
+<div class="mse-results-box">
+    <div class="mse-date">📅 30 марта 2026</div>
+    <div class="mse-title">
+        <i class="fas fa-brain"></i> Итоговые метрики модели (MSE)
+    </div>
+    <div class="mse-grid">
+        <div class="mse-item">
+            <div class="mse-label">Ошибка на обучении</div>
+            <div class="mse-value">0.017893</div>
+        </div>
+        <div class="mse-item">
+            <div class="mse-label">Ошибка на тесте</div>
+            <div class="mse-value">0.026159</div>
+        </div>
+    </div>
+    <p class="mse-note">*Значения округлены до 6 знаков после запятой для удобства отображения</p>
+</div>
+
 <script>
     // Функция для форматирования даты с заглавной буквы
     function formatDate(dateObj, locale = 'ru-RU') {
@@ -489,27 +596,5 @@
     const datePredictions = new Date(2025, 11, 20);
     document.getElementById('current-date').textContent = formatDate(datePredictions);
 </script>
-<!-- Прогноз модели линейной регрессии -->
-<div style="background: #ffffff; border: 2px dashed #1a3a5f; border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center; box-shadow: 0 4px 15px rgba(26, 58, 95, 0.05);">
-    
-    <!-- Дата прогноза -->
-    <div style="background: #1a3a5f; color: #fff; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600;">
-        📅 16 марта
-    </div>
-    
-    <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <i class="fas fa-chart-line"></i> Прогноз успеваемости (ML Модель)
-    </div>
-    <div style="font-family: 'Ruslan Display', cursive; font-size: 2.5rem; color: #1a3a5f; margin: 5px 0;">
-        50.23 балла
-    </div>
-    <div style="font-size: 1rem; color: #1e293b; background: #f0f9ff; display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 5px;">
-        При практике: <strong style="color: #d4a017;">5.0 часов</strong>
-    </div>
-    <p style="font-size: 0.85rem; color: #64748b; margin-top: 10px;">
-        *Расчет выполнен моделью линейной регрессии на основе данных task_regression2.csv
-    </p>
-</div>
 </body>
 </html>
-
