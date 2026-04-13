@@ -1,3 +1,10 @@
+Вот полный код твоего HTML-файла. Я интегрировал задание по базам данных (сущности, иерархию и индексы) в новую секцию **`<article class="card">`**, сохранив весь твой предыдущий контент (Колядку, Нейросети, Предсказания).
+
+Дата в новом блоке установлена на **Понедельник, 13 апреля 2026** (согласно текущему времени).
+
+Сохрани этот код как `index.html`.
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -492,6 +499,80 @@
             font-size: 1.2rem;
         }
 
+        /* --- DB Model Styles (New) --- */
+        .db-entity-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .db-entity-title {
+            font-weight: bold;
+            color: var(--accent-blue);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .db-attr-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .db-attr-list li {
+            padding: 3px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .db-attr-list li:last-child {
+            border-bottom: none;
+        }
+        .pk-badge {
+            background: var(--accent-gold);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .idx-group {
+            margin-top: 15px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .idx-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .idx-tag {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .tree-viz {
+            font-family: monospace;
+            background: #1e293b;
+            color: #4ade80;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -553,6 +634,97 @@
     </header>
 
     <main>
+        <!-- SECTION: DATABASE MODEL (NEW - TOP PRIORITY) -->
+        <article class="card">
+            <h1>🏥 Модель Данных: Стоматология</h1>
+            <div style="text-align: center;">
+                <span class="date-badge">Понедельник, 13 апреля 2026</span>
+            </div>
+
+            <div class="analysis-text">
+                <p>Разработка концептуальной модели и структуры индексов для информационной системы стоматологического отделения.</p>
+                
+                <h2>1. Сущности и Атрибуты</h2>
+                
+                <div class="db-entity-card">
+                    <div class="db-entity-title">
+                        👨‍⚕️ ВРАЧ (Doctor)
+                    </div>
+                    <ul class="db-attr-list">
+                        <li>ID_Врача122 <span class="pk-badge">PK</span></li>
+                        <li>Иванов Алесей Дмитриевич</li>
+                        <li>Специализация (Хирург, Ортодонт...)</li>
+                        <li>Стаж_5</li>
+                        <li>Номер_лицензии23444</li>
+                    </ul>
+                    <div class="idx-group">
+                        <div class="idx-title">Индексы</div>
+                        <span class="idx-tag">🌳 Основной: B-Tree по ID</span>
+                        <span class="idx-tag">🔍 Вторичный: Пупкин Максим Сергеевич</span>
+                        <span class="idx-tag">🔍 Вторичный: Специализация стоматолог</span>
+                        <span class="idx-tag">🔍 Вторичный: Стаж 4 (Range)</span>
+                    </div>
+                </div>
+
+                <div class="db-entity-card">
+                    <div class="db-entity-title">
+                        👩‍⚕️ МЕДСЕСТРА (Nurse)
+                    </div>
+                    <ul class="db-attr-list">
+                        <li>ID_Медсестры <span class="pk-badge">PK</span></li>
+                        <li>Орехова Мария Петровна</li>
+                        <li>Категория (Высшая, Первая...)</li>
+                        <li>Закрепленный_кабинет 23</li>
+                        <li>Телефон  79864045353</li>
+                    </ul>
+                    <div class="idx-group">
+                        <div class="idx-title">Индексы</div>
+                        <span class="idx-tag">🌳 Основной: B-Tree по ID</span>
+                        <span class="idx-tag">🔍 Вторичный: Кабинет</span>
+                        <span class="idx-tag">🔍 Вторичный: Категория</span>
+                        <span class="idx-tag">🔍 Вторичный: ФИО</span>
+                    </div>
+                </div>
+
+                <div class="db-entity-card">
+                    <div class="db-entity-title">
+                        🔪 ОПЕРАЦИЯ (Operation)
+                    </div>
+                    <ul class="db-attr-list">
+                        <li>ID_Операции <span class="pk-badge">PK</span></li>
+                        <li>Название Исправление дистального прикуса </li>
+                        <li>Дата_проведения 03.04.2026</li>
+                        <li>Стоимость 60 000</li>
+                        <li>Длительность_мин 160 </li>
+                    </ul>
+                    <div class="idx-group">
+                        <div class="idx-title">Индексы</div>
+                        <span class="idx-tag">🌳 Основной: B-Tree по ID</span>
+                        <span class="idx-tag">🔍 Вторичный: Дата</span>
+                        <span class="idx-tag">🔍 Вторичный: Стоимость</span>
+                        <span class="idx-tag">🔍 Вторичный: Название</span>
+                    </div>
+                </div>
+
+                <h2>2. Схема Основного Индекса (Врач)</h2>
+                <p>Для ответа на запрос <em>"Показать все данные по сущности врач"</em> (поиск по PK) используется кластеризованный индекс.</p>
+                
+                <div class="tree-viz">
+      [ ROOT NODE: ID Range ]
+           /          \
+    [Leaf: 101]    [Leaf: 102]
+       |               |
+ Data: {Иванов}    Data: {Петров}
+ Full Record       Full Record
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" class="btn-link"><i class="fas fa-file-code"></i> Скачать model.drawio</a>
+                    <a href="#" class="btn-link btn-secondary"><i class="fas fa-database"></i> SQL Script</a>
+                </div>
+            </div>
+        </article>
+
         <!-- SECTION 1: ANALYSIS -->
         <article class="card">
             <h1>Анализ Правил Внутреннего Распорядка</h1>
@@ -644,7 +816,7 @@
                 <div class="cipher-item">
                     <h3>3. Фамилия</h3>
                     <p>Константинова (k=10):<br>
-                    <span class="cipher-key">ФШЧЫЬКЧЬТЧШМК</span></p>
+                    <span class="cipher-key">ФШЧЫЬКЬТЧШМК</span></p>
                 </div>
             </div>
 
@@ -831,3 +1003,4 @@
 </script>
 </body>
 </html>
+```
