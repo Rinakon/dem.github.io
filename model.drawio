@@ -1,0 +1,111 @@
+<mxGraphModel dx="1038" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    
+    <!-- Заголовок -->
+    <mxCell id="title" value="Модель данных: Стоматология" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="200" y="20" width="400" height="30" as="geometry"/>
+    </mxCell>
+
+    <!-- СУЩНОСТИ -->
+    
+    <!-- Врач -->
+    <mxCell id="doctor_entity" value="ВРАЧ&lt;br&gt;&lt;b&gt;Атрибуты:&lt;/b&gt;&lt;br&gt;1. ID_Врача (PK)&lt;br&gt;2. ФИО&lt;br&gt;3. Специализация&lt;br&gt;4. Стаж&lt;br&gt;5. Лицензия" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#dae8fc;" vertex="1" parent="1">
+      <mxGeometry x="50" y="100" width="160" height="120" as="geometry"/>
+    </mxCell>
+
+    <!-- Медсестра -->
+    <mxCell id="nurse_entity" value="МЕДСЕСТРА&lt;br&gt;&lt;b&gt;Атрибуты:&lt;/b&gt;&lt;br&gt;1. ID_Медсестры (PK)&lt;br&gt;2. ФИО&lt;br&gt;3. Категория&lt;br&gt;4. Кабинет&lt;br&gt;5. Телефон" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#d5e8d4;" vertex="1" parent="1">
+      <mxGeometry x="300" y="100" width="160" height="120" as="geometry"/>
+    </mxCell>
+
+    <!-- Операция -->
+    <mxCell id="op_entity" value="ОПЕРАЦИЯ&lt;br&gt;&lt;b&gt;Атрибуты:&lt;/b&gt;&lt;br&gt;1. ID_Операции (PK)&lt;br&gt;2. Название&lt;br&gt;3. Дата&lt;br&gt;4. Стоимость&lt;br&gt;5. Длительность" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#fff2cc;" vertex="1" parent="1">
+      <mxGeometry x="550" y="100" width="160" height="120" as="geometry"/>
+    </mxCell>
+
+    <!-- Иерархия (Общая папка/отделение) -->
+    <mxCell id="dept_entity" value="СТОМАТОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ" style="swimlane;startSize=20;horizontal=1;containerType=tree;strokeColor=#666666;fillColor=#f5f5f5;" vertex="1" parent="1">
+      <mxGeometry x="200" y="300" width="400" height="200" as="geometry"/>
+    </mxCell>
+    
+    <!-- Связи иерархии (визуальные линии к отделению) -->
+    <mxCell id="link1" value="" style="endArrow=block;endFill=1;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="doctor_entity" target="dept_entity">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="130" y="250" as="sourcePoint"/>
+        <mxPoint x="180" y="200" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="link2" value="" style="endArrow=block;endFill=1;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="nurse_entity" target="dept_entity">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="380" y="250" as="sourcePoint"/>
+        <mxPoint x="430" y="200" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="link3" value="" style="endArrow=block;endFill=1;html=1;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" edge="1" parent="1" source="op_entity" target="dept_entity">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="630" y="250" as="sourcePoint"/>
+        <mxPoint x="680" y="200" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ИНДЕКСЫ ДЛЯ ВРАЧА (Запрос: Показать все данные по врачу) -->
+    <mxCell id="idx_doc_main_title" value="Основной индекс (Врач)&lt;br&gt;Поиск по ID_Врача (Clustered)" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="50" y="550" width="160" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_doc_main_tree" value="B-Tree / Hash&lt;br&gt;Key: ID_Врача&lt;br&gt;↓&lt;br&gt;Указатель на строку&lt;br&gt;(Все 5 атрибутов)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;strokeColor=#b85450;fillColor=#f8cecc;" vertex="1" parent="1">
+      <mxGeometry x="50" y="590" width="160" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- Вторичные индексы ВРАЧ -->
+    <mxCell id="idx_doc_sec1" value="Sec Index 1&lt;br&gt;По ФИО&lt;br&gt;(Неуник.)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+      <mxGeometry x="20" y="700" width="100" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_doc_sec2" value="Sec Index 2&lt;br&gt;По Специализации&lt;br&gt;(Неуник.)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+      <mxGeometry x="130" y="700" width="100" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_doc_sec3" value="Sec Index 3&lt;br&gt;По Стажу&lt;br&gt;(Range Query)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+      <mxGeometry x="240" y="700" width="100" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- ИНДЕКСЫ ДЛЯ МЕДСЕСТРЫ -->
+    <mxCell id="idx_nurse_main_title" value="Основной индекс (Медсестра)&lt;br&gt;Поиск по ID_Медсестры" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="300" y="550" width="160" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_nurse_main_tree" value="B-Tree&lt;br&gt;Key: ID_Медсестры&lt;br&gt;↓&lt;br&gt;Указатель на строку" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+      <mxGeometry x="300" y="590" width="160" height="80" as="geometry"/>
+    </mxCell>
+    
+    <!-- Вторичные индексы МЕДСЕСТРА -->
+    <mxCell id="idx_nurse_sec1" value="Sec Index 1&lt;br&gt;По ФИО" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#d5e8d4;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="270" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_nurse_sec2" value="Sec Index 2&lt;br&gt;По Кабинету" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#d5e8d4;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="360" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_nurse_sec3" value="Sec Index 3&lt;br&gt;По Категории" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#d5e8d4;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="450" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- ИНДЕКСЫ ДЛЯ ОПЕРАЦИИ -->
+    <mxCell id="idx_op_main_title" value="Основной индекс (Операция)&lt;br&gt;Поиск по ID_Операции" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="550" y="550" width="160" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_op_main_tree" value="B-Tree&lt;br&gt;Key: ID_Операции&lt;br&gt;↓&lt;br&gt;Указатель на строку" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;strokeColor=#d6b656;fillColor=#fff2cc;" vertex="1" parent="1">
+      <mxGeometry x="550" y="590" width="160" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- Вторичные индексы ОПЕРАЦИЯ -->
+    <mxCell id="idx_op_sec1" value="Sec Index 1&lt;br&gt;По Дате" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#fff2cc;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="520" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_op_sec2" value="Sec Index 2&lt;br&gt;По Стоимости" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#fff2cc;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="610" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="idx_op_sec3" value="Sec Index 3&lt;br&gt;По Названию" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#fff2cc;fillColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="700" y="700" width="80" height="60" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
